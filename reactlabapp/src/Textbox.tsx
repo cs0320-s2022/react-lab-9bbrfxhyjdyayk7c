@@ -1,4 +1,9 @@
-function TextBox(props: any) {
+import React from 'react';
+import './App.css';
+
+function TextBox(props: {
+    label : string,
+    change : React.Dispatch<React.SetStateAction<string>>}) {
     return (
         <div className = "TextBox">
             <label>{props.label}</label>

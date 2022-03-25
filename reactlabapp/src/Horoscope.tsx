@@ -36,7 +36,7 @@ const [rising, setRising] = useState("");
      //TODO: Fill in 1) location for request 2) your data 3) configuration
 
         axios.post('http://localhost:4567/horoscope', toSend, config)
-            .then(response => {
+            .then((response: { data: { [x: string]: React.SetStateAction<never[]>; }; }) => {
          console.log(response.data);
          //TODO: Go to the Main.java in the server from the stencil, and find what field name you should put here.
          //Note: It is very important that you understand how this is set up and why it works!
@@ -46,18 +46,16 @@ const [rising, setRising] = useState("");
          console.log(error);
      });
   }
-
   return (
   <div className="Horoscope">
-
-             <TextBox label={"Sun Sign"} change={setSun}/>
-              <TextBox label={"Moon Sign"}change={setMoon}/>
-              <TextBox label={"Rising Sign"} change={setRising}/>
-               <AwesomeButton onPress={Horoscope} type="primary">Submit</AwesomeButton>
-                 <br></br>
-                            {horoscope.map(e => <p>{e}</p>)}
-          </div>
-      );
-
+                <TextBox label={"Sun Sign"} change = {setSun}/>
+                <TextBox label={"Moon Sign"} change = {setMoon}/>
+                <TextBox label={"Rising Sign"} change = {setRising}/>
+                <AwesomeButton onPress={requestHoroscope} type={"primary"}>
+                    Press
+                </AwesomeButton> {horoscope.map(element => <div>{element}</div>)}
+            </div>
+        );
   }
+
 export default Horoscope;
